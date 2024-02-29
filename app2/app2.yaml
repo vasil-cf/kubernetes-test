@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app2
-          image: vasilscf/app2:1.0.0
+          image: vasilscf/app2:1.1.0
           ports:
             - containerPort: 3000
           env:
@@ -28,6 +28,16 @@ spec:
                 configMapKeyRef:
                   name: app2-configmap
                   key: port
+            - name: app1_host
+              valueFrom:
+                configMapKeyRef:
+                  name: app2-configmap
+                  key: app1_host
+            - name: app1_port
+              valueFrom:
+                configMapKeyRef:
+                  name: app2-configmap
+                  key: app1_port
 ---
 apiVersion: v1
 kind: Service

@@ -3,7 +3,17 @@ import fastify from 'fastify';
 const server = fastify({logger: true});
 
 server.get('/', async (request, reply) => {
-    return {hello: 'world from app2!'};
+    const app1Host = process.env.app1_host!;
+    const app1Port = process.env.app1_port!;
+
+    try {
+        const response = await fetch(`http://${app1Host}:${app1Port}/`);
+        const data = await response.json();
+        return {hello: 'world from app2!', data};
+    } catch (err: any) {
+        server.log.error(err);
+        return {hello: 'world from app2!', isError: true, details: err?.message!};
+    }
 });
 
 const start = async () => {
