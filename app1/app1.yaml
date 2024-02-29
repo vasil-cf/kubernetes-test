@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: vasilscf/app1:1.0.0
+          image: ghcr.io/vasil-cf/app1:1.0.0
           ports:
             - containerPort: 3000
           env:
@@ -28,6 +28,8 @@ spec:
                 configMapKeyRef:
                   name: app1-configmap
                   key: port
+      imagePullSecrets:
+        - name: ghcr-secret
 ---
 apiVersion: v1
 kind: Service
