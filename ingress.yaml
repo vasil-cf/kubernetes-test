@@ -14,4 +14,13 @@ spec:
                 name: app1-service
                 port:
                   number: 3000
-                
+    - host: app2.local
+      http:
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: app2-service
+                port:
+                  number: 3000
