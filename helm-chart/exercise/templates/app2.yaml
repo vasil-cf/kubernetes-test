@@ -41,6 +41,7 @@ spec:
       imagePullSecrets:
         - name: ghcr-secret
 ---
+{{ if .Values.app2.isToDeployService -}}
 apiVersion: v1
 kind: Service
 metadata:
@@ -52,3 +53,4 @@ spec:
     - protocol: TCP
       port: {{ .Values.app2.port }}
       targetPort: {{ .Values.app2.port }}
+{{- end }}

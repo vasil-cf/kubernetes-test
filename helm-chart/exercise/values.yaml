@@ -6,4 +6,5 @@ app1:
 app2:
   host: "0.0.0.0"
   port: "3000"
+  isToDeployService: false
   service: "app2-service"
