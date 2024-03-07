@@ -34,11 +34,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: app1-service
+  name: "{{ .Values.app1.service }}"
 spec:
   selector:
     app: app1
   ports:
     - protocol: TCP
-      port: 3000
-      targetPort: 3000
+      port: {{ .Values.app1.port }}
+      targetPort: {{ .Values.app1.port }}

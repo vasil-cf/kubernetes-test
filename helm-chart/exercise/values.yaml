@@ -1,0 +1,9 @@
+app1:
+  host: "0.0.0.0"
+  port: "3000"
+  service: "app1-service"
+
+app2:
+  host: "0.0.0.0"
+  port: "3000"
+  service: "app2-service"

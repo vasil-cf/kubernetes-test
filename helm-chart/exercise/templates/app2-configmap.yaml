@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-app2-configmap
+data:
+  host: "{{ .Values.app2.host }}"
+  port: "{{ .Values.app2.port }}"
+  app1_host: "{{ .Values.app1.service }}"
+  app1_port: "{{ .Values.app1.port }}"
