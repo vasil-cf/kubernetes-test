@@ -1,4 +1,4 @@
-commonLabels:
+commonAnnotations:
   environment: dev
 
 namespace: mar11-dev

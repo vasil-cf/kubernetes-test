@@ -1,4 +1,4 @@
-commonLabels:
+commonAnnotations:
   environment: prd
 
 namespace: mar11-prd
