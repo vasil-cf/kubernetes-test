@@ -14,4 +14,4 @@ patches:
     version: v1
     kind: Deployment
     name: app1-deployment
-  path: patch.yaml
+  path: increase-replicas.yaml
