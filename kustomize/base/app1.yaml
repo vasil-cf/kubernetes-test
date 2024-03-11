@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app1-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app1
+  template:
+    metadata:
+      labels:
+        app: app1
+    spec:
+      containers:
+        - name: app1
+          image: ghcr.io/vasil-cf/app1:1.0.0
+          ports:
+            - containerPort: 3000
+          env:
+            - name: host
+              valueFrom:
+                configMapKeyRef:
+                  name: app1-configmap
+                  key: host
+            - name: port
+              valueFrom:
+                configMapKeyRef:
+                  name: app1-configmap
+                  key: port
+      imagePullSecrets:
+        - name: ghcr-secret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app1-service
+spec:
+  selector:
+    app: app1
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000

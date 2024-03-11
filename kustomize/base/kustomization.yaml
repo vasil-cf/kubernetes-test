@@ -1,0 +1,18 @@
+commonLabels:
+  app: exercise
+
+namespace: mar11
+
+resources:
+  - app1.yaml
+  - app1-configmap.yaml
+  - app2.yaml
+  - app2-configmap.yaml
+  - ingress.yaml
+
+vars:
+- name: APP1_SERVICE_NAME
+  objref:
+    kind: Service
+    name: app1-service
+    apiVersion: v1

@@ -1,0 +1,9 @@
+commonLabels:
+  environment: dev
+
+namespace: mar11-dev
+
+namePrefix: dev-
+
+bases:
+- ../../base
