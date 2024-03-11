@@ -5,5 +5,5 @@ metadata:
 data:
   host: "0.0.0.0"
   port: "3000"
-  app1_host: "$(APP1_SERVICE_NAME)"
+  app1_host: "app1-service"
   app1_port: "3000"

@@ -15,3 +15,16 @@ patches:
     kind: Deployment
     name: app1-deployment
   path: increase-replicas.yaml
+
+replacements:
+  - source:
+      kind: Service
+      name: app1-service
+      fieldPath: metadata.name
+    targets:
+      - select:
+          version: v1
+          kind: ConfigMap
+          name: app2-configmap
+        fieldPaths:
+          - data.app1_host
