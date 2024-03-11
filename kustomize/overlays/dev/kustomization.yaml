@@ -5,5 +5,8 @@ namespace: mar11-dev
 
 namePrefix: dev-
 
-bases:
+resources:
 - ../../base
+
+patchesStrategicMerge:
+- set-memory.yaml

@@ -1,9 +1,12 @@
 commonLabels:
-  environment: dev
+  environment: prd
 
-namespace: mar11-dev
+namespace: mar11-prd
 
-namePrefix: dev-
+namePrefix: prd-
 
-bases:
+resources:
 - ../../base
+
+patchesStrategicMerge:
+- set-memory.yaml
