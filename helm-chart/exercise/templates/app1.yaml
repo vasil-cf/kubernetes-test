@@ -25,7 +25,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: ghcr.io/vasil-cf/app1:1.0.0
+          image: ghcr.io/vasil-cf/app1:2.0.0
           ports:
             - containerPort: 3000
           env:
