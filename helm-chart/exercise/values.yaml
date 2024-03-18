@@ -1,7 +1,8 @@
 app1:
   host: "0.0.0.0"
   port: "3000"
-  service: "app1-service"
+  service_stable: "app1-service-stable"
+  service_canary: "app1-service-canary"
 
 app2:
   host: "0.0.0.0"

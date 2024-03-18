@@ -5,5 +5,5 @@ metadata:
 data:
   host: "{{ .Values.app2.host }}"
   port: "{{ .Values.app2.port }}"
-  app1_host: "{{ .Values.app1.service }}"
+  app1_host: "{{ .Values.app1.service_stable }}"
   app1_port: "{{ .Values.app1.port }}"

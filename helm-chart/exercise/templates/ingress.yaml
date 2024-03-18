@@ -2,6 +2,8 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: app-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
 spec:
   rules:
     - host: app1.local
@@ -11,7 +13,7 @@ spec:
             pathType: ImplementationSpecific
             backend:
               service:
-                name: app1-service
+                name: "{{ .Values.app1.service_stable }}"
                 port:
                   number: 3000
     - host: app2.local

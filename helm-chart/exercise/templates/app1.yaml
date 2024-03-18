@@ -1,9 +1,20 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
-  name: app1-deployment
+  name: app1-rollout
 spec:
   replicas: 1
+  strategy:
+    canary:
+      canaryService: "{{ .Values.app1.service_canary }}"
+      stableService: "{{ .Values.app1.service_stable }}"
+      trafficRouting:
+        nginx:
+          stableIngress: app-ingress
+      steps:
+        - setWeight: 50
+        - pause: { }
+  revisionHistoryLimit: 2
   selector:
     matchLabels:
       app: app1
@@ -34,7 +45,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ .Values.app1.service }}"
+  name: "{{ .Values.app1.service_stable }}"
+spec:
+  selector:
+    app: app1
+  ports:
+    - protocol: TCP
+      port: {{ .Values.app1.port }}
+      targetPort: {{ .Values.app1.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.app1.service_canary }}"
 spec:
   selector:
     app: app1
