@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts-sample
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/vasil-cf/kubernetes-test.git
+    targetRevision: main
+    path: rollouts-sample/kube
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argo-rollouts-sample
+
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+
+    automated:
+      selfHeal: true
+      prune: true
