@@ -1,9 +1,14 @@
 import fastify from 'fastify';
 
+const VERSION = '2.0.0'
+
 const server = fastify({logger: true});
 
 server.get('/', async (request, reply) => {
-    return {hello: 'world'};
+    return {
+        hello: 'world',
+        version: VERSION
+    };
 });
 
 const start = async () => {
@@ -11,7 +16,7 @@ const start = async () => {
         const port = process.env.port!;
         const host = process.env.host!;
         await server.listen({port: Number(port), host});
-        console.log(`Server is listening on ${port}`);
+        console.log(`Version: ${VERSION}. Server is listening on ${port}`);
     } catch (err) {
         server.log.error(err);
         process.exit(1);

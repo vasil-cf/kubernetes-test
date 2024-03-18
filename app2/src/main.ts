@@ -1,5 +1,7 @@
 import fastify from 'fastify';
 
+const VERSION = '2.0.0';
+
 const server = fastify({logger: true});
 
 server.get('/', async (request, reply) => {
@@ -9,10 +11,10 @@ server.get('/', async (request, reply) => {
     try {
         const response = await fetch(`http://${app1Host}:${app1Port}/`);
         const data = await response.json();
-        return {hello: 'world from app2!', data};
+        return {hello: 'world from app2!', version: VERSION, data};
     } catch (err: any) {
         server.log.error(err);
-        return {hello: 'world from app2!', isError: true, details: err?.message!};
+        return {hello: 'world from app2!', version: VERSION, isError: true, details: err?.message!};
     }
 });
 
@@ -21,7 +23,7 @@ const start = async () => {
         const port = process.env.port!;
         const host = process.env.host!;
         await server.listen({port: Number(port), host});
-        console.log(`Server is listening on ${port}`);
+        console.log(`Version: ${VERSION}. Server is listening on ${port}`);
     } catch (err) {
         server.log.error(err);
         process.exit(1);
